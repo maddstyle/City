@@ -47,12 +47,12 @@ const Slide = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  height 100%;
+  height: 100%;
   flex: 1;
 `;
 
 const Image = styled.img`
-  height: 80%
+  height: 100%
 `;
 
 const InfoContainer = styled.div`
@@ -68,7 +68,7 @@ const Desc = styled.p`
   margin: 50px 0px;
   font-size: 20px;
   font-weight: 500;
-  letter-spacing; 3px;
+  letter-spacing: 3px;
 `;
 
 const Button = styled.button`
