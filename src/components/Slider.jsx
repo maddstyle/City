@@ -1,12 +1,15 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+import { useState } from "react";
 import styled from "styled-components";
-import img from "../images/redSofa.png";
+import { sliderItems } from "../data";
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
+  // padding: 50px;
+  overflow: hidden;
 `;
 
 const Arrow = styled.div`
@@ -20,22 +23,27 @@ const Arrow = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: ${props => props.direction === "left" && "10px"};
-  right: ${props => props.direction === "right" && "10px"};
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
+  display: flex;
+  transition: all 1.5s ease;
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
-  height: 100vh;
-  width: 70vw;
+  height: 80vh;
+  width: 100vw;
   display: flex;
-  // align-items: ;
+  align-items: center;
+  background-color: #${(props) => props.bg};
 `;
 
 const ImageContainer = styled.div`
@@ -43,14 +51,20 @@ const ImageContainer = styled.div`
   flex: 1;
 `;
 
+const Image = styled.img`
+  height: 80%
+`;
+
 const InfoContainer = styled.div`
   flex: 1;
+  padding: 50px;
 `;
 
 const Title = styled.h1`
   font-size: 70px;
 `;
-const Description = styled.p`
+
+const Desc = styled.p`
   margin: 50px 0px;
   font-size: 20px;
   font-weight: 500;
@@ -64,34 +78,36 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Image = styled.img`
-  height: 60%;
-`;
-
-
 const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 1);
+    } else {
+      setSlideIndex(slideIndex < 1 ? slideIndex + 1 : 0);
+    }
+  };
+
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
-      <Wrapper>
-        <Slide>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => ( 
+        <Slide bg={item.bg}>
           <ImageContainer>
-            <Image src={img} alt={img} />
+            <Image src={item.img} />
           </ImageContainer>
           <InfoContainer>
-            <Title>30% OFF SOFA'S</Title>
-            <Description>
-               New markdowns! Hurry for Valentine's Day colors.
-            </Description>
-            <Button>
-               Shop Now
-            </Button>
+            <Title>{item.title}</Title>
+            <Desc>{item.desc}</Desc>
+            <Button>Shop Now</Button>
           </InfoContainer>
         </Slide>
+        ))}     
       </Wrapper>
-      <Arrow direction="right">
+      <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlined />
       </Arrow>
     </Container>
