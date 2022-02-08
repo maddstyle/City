@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   height: 40px;
@@ -10,6 +11,7 @@ const Container = styled.div`
   font-size: 16px;
   font-weight: 500;
   text-transform: uppercase;
+  ${mobile({ fontSize: "14px", textAlign: "center" })}
 `;
 
 const SpecialOffer = () => {

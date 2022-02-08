@@ -8,17 +8,23 @@ import {
   MailOutline,
 } from "@material-ui/icons";
 import styled from "styled-components";
+import { mobile } from "../responsive";
+
 
 const Container = styled.div`
   display: flex;
-  padding-left: 150px;
+  ${mobile({ flexDirection: "column" })}
+
+  /* align-items: center;
+  justify-content: center;
+  padding-left: 50px */
 `;
 
 const Left = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 30px;
 `;
 
 const Logo = styled.h1``;
@@ -43,6 +49,7 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ display: "none" })}
 `;
 
 const Title = styled.h3`
@@ -65,6 +72,7 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ backgroundColor: "#fff8f8" })}
 `;
 
 const ContactItem = styled.div`
@@ -97,8 +105,8 @@ const Footer = () => {
       <Center>
       <Logo>CITY.</Logo>
         <Desc>
-          CITY CARES BRINGING OUR PURPOSE TO LIFE We strive to make the world a
-          better place by acting on behalf of our community, our planet, and our
+          CITY CARES BRINGING OUR PURPOSE TO LIFE<br/>We strive to make the world a
+          better place by acting<br/> on behalf of our community,our planet, and our
           associates.
         </Desc>
         <SocialContainer>
