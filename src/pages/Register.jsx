@@ -1,6 +1,7 @@
+import React from 'react'
 import styled from 'styled-components'
 import background from '../images/redWhiteSofa.jpg'
-import { mobile } from "../responsive";
+import { mobile } from "../responsive"
 
 const Container = styled.div`
   width: 100vw;

@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import background from '../images/wideRoom.jpg'
 import {mobile} from "../responsive";

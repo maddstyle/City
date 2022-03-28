@@ -1,19 +1,23 @@
-import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import SpecialOffer from "../components/SpecialOffer";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
+import React from "react";
 import { Add, Remove } from "@material-ui/icons";
+import styled from "styled-components";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestMethods";
+import SpecialOffer from "../components/SpecialOffer";
+// import { addProduct } from "../redux/cartRedux";
+// import { useDispatch } from "react-redux";
 
-const Container = styled.div`
-  flex: 1;
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -43,7 +47,7 @@ const Desc = styled.p`
 
 const Price = styled.span`
   font-weight: 100;
-  font-size: 30px;
+  font-size: 40px;
 `;
 
 const FilterContainer = styled.div`
@@ -68,7 +72,7 @@ const FilterColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   margin: 0px 5px;
   cursor: pointer;
 `;
@@ -78,13 +82,10 @@ const FilterSize = styled.select`
   padding: 5px;
 `;
 
-const FilterSizeOption = styled.option`
-
-`;
+const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
   width: 50%;
-  margin: 30px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,7 +98,7 @@ const AmountContainer = styled.div`
   font-weight: 700;
 `;
 
-const Amount = styled.div`
+const Amount = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 10px;
@@ -105,13 +106,12 @@ const Amount = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5px
+  margin: 0px 5px;
 `;
 
 const Button = styled.button`
-  padding: 10px;
+  padding: 15px;
   border: 2px solid teal;
-  border-radius: 5px;
   background-color: white;
   cursor: pointer;
   font-weight: 500;
@@ -121,51 +121,72 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  // const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        setProduct(res.data);
+      } catch {}
+    };
+    getProduct();
+  }, [id]);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  // const handleClick = () => {
+  //   dispatch(
+  //     addProduct({ ...product, quantity, color, size })
+  //   );
+  // };
   return (
     <Container>
-      <SpecialOffer />
       <Navbar />
+      <SpecialOffer />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Boulder Mid Tone Panel Bed</Title>
-          <Desc>
-            This is the contemporary bed you’ve had in mind all along. Sleek and
-            built to stand the test of time, the Boulder panel bed is subtle in
-            all the right ways. With its industrial-inspired accents and warm
-            tone, you have the freedom to add bright or neutral bedding – giving
-            you the power to decorate as you please. No matter what bedroom
-            design ideas you may have, this mid-century panel bed will fit in
-            perfectly. *Mattress sold separately.
-          </Desc>
-          <Price>$ 20</Price>
+          <Title>{product.title}</Title>
+          <Desc>{product.desc}</Desc>
+          <Price>$ {product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="blue" />
-              <FilterColor color="gray" />
+              {product.color.map((c) => (
+                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+              ))}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product.size.map((s) => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button >ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
