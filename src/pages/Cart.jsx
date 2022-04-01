@@ -114,7 +114,7 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px 15px;
-  /* ${mobile({ margin: "5px 15px" })} */
+  ${mobile({ marginTop: "15px" })}
 `;
 
 const ProductPrice = styled.div`
@@ -259,7 +259,7 @@ const Cart = () => {
           </Summary>
         </Bottom>
       </Wrapper>
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   );
 };

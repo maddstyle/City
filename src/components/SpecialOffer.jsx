@@ -12,13 +12,13 @@ const Container = styled.div`
   font-size: 16px;
   font-weight: 500;
   text-transform: uppercase;
-  ${mobile({ fontSize: "14px", textAlign: "center" })}
+  ${mobile({ fontSize: "12px", textAlign: "center" })}
 `;
 
 const SpecialOffer = () => {
   return (
     <Container>
-        President's day sale starts now! These savings are making history
+        VIP card holder sale starts now! These savings are making history
     </Container>
   )
 }

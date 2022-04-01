@@ -14,6 +14,7 @@ import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
+  padding-top: 50px;
   ${mobile({ flexDirection: "column" })}
 
   /* align-items: center;

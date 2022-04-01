@@ -7,7 +7,9 @@ import { mobile } from "../responsive"
 
 const Container = styled.div`
   height: 60px;
+  margin-bottom: 6px;
   box-shadow: 0 6px 6px -2px rgba(0,0,0,.1);
+  z-index: 9;
   ${mobile({ height: "50px" })}
 `;
 
@@ -67,7 +69,7 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  ${mobile({ fontSize: "10px", marginLeft: "10px" })}
 `;
 
 const Navbar = () => {

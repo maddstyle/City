@@ -17,6 +17,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${mobile({ height: "50%" })}
 `;
 
 const Wrapper = styled.div`
