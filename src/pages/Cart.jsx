@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import SpecialOffer from "../components/SpecialOffer";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import img from "../images/PasadenadiningRoom.jpg";
 import img1 from "../images/outdoorFire.jpg";
 import { Add, Remove } from "@material-ui/icons";
