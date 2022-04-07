@@ -1,7 +1,7 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://prod-cityfurniture.dotcmscloud.com/dA/6b49183d-d40c-4032-8c9f-049e2130b00c",
+    img: "https://prod-cityfurniture.dotcmscloud.com/dA/2fc4aa11-76d0-413f-bee6-f541e7640ebc",
     title: "SPRING FAVORITES",
     desc: "Get a fresh start for spring with top pics from our designers!",
     bg: "fcf1ed",
