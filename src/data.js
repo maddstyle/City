@@ -1,19 +1,18 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://prod-cityfurniture.dotcmscloud.com/dA/2fc4aa11-76d0-413f-bee6-f541e7640ebc",
-    title: "SPRING FAVORITES",
-    desc: "Get a fresh start for spring with top pics from our designers!",
-    bg: "fcf1ed",
-  },
-  {
-    id: 2,
     img: "https://embed.widencdn.net/img/cityfurniture/b1129suswm/822x554px/E2009721456F00_EI_MUNICH_GLD_GL_T4_DTLUC.webp?keep=c&amp;crop=0&amp;u=m2xgp2",
     title: "STYLISH DINING",
     desc: "Don't compromise on style, add a pop of color into your dining room.",
     bg: "f2fcfc",
   },
-  
+    {
+    id: 2,
+    img: "https://prod-cityfurniture.dotcmscloud.com/dA/2fc4aa11-76d0-413f-bee6-f541e7640ebc",
+    title: "SPRING FAVORITES",
+    desc: "Get a fresh start for spring with top pics from our designers!",
+    bg: "fcf1ed",
+  },
   {
     id: 3,
     img: "https://embed.widencdn.net/img/cityfurniture/zq97sfoj2w/822x554px/E2109722531F00_ET_MRABEL_2TN_PN_BD_K.webp?keep=c&amp;crop=0&amp;u=m2xgp2",
